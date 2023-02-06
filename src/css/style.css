@@ -8,3 +8,46 @@
   'GRAD' 0,
   'opsz' 48
 }
+
+body {
+  font-family: 'Roboto Mono', Arial, Helvetica, sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+main {
+  height: 90vh;
+}
+
+header {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: blueviolet;
+  padding: 5px;
+  border: 1px solid;
+}
+
+nav {
+  display: flex;
+  gap: 3rem;
+}
+
+
+footer {
+  text-align: center;
+}
