@@ -1,5 +1,5 @@
 import Api from './api.js';
-import { itemsCounter } from './functionalities.js';
+import { itemsCounter, likesCounter } from './functionalities.js';
 
 const listItems = document.querySelector('#list-items');
 const homeLink = document.querySelector('#home');
@@ -17,7 +17,7 @@ const displaySeries = async () => {
 
   let items = '';
   data.forEach(async (film) => {
-    const nbLikes = await Api.likesCounter(film.id);
+    const nbLikes = await likesCounter(film.id);
     items += `
     <article class="item">
       <img src="${film.image.original}" alt="">
@@ -42,7 +42,7 @@ listItems.addEventListener('click', async (event) => {
     const { id: itemId } = target.dataset;
     const response = await Api.addNewLike(+itemId);
     if (response === 201) {
-      const nbLikes = await Api.likesCounter(+itemId);
+      const nbLikes = await likesCounter(+itemId);
       // Update the likes
       const parent = target.parentElement;
       target.classList.add('liked');
