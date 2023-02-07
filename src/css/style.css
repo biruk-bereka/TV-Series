@@ -85,7 +85,6 @@ img {
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  border: 2px solid orange;
   padding: 10px;
   border-radius: 10px;
 }
@@ -159,7 +158,6 @@ button:active {
   background: white;
   border-radius: 10px;
   font-size: 18px;
-  color: orange;
   font-weight: 700;
 }
 
