@@ -1,12 +1,11 @@
-import Api from "./api.js";
-import CommentAPI from "./commentAPI.js";
+import Api from './api.js';
+import CommentAPI from './commentAPI.js';
 
 const comment = async (id) => {
   const movie = await Api.getMovie(id);
-  const main = document.querySelector('main');
-  const commentPopup = document.createElement("section");
+  const commentPopup = document.createElement('section');
   document.body.appendChild(commentPopup);
-  commentPopup.classList.toggle("popup");
+  commentPopup.classList.toggle('popup');
   commentPopup.innerHTML = `
     <div class="comment-container">
     <div class="popup-header">
@@ -38,24 +37,24 @@ const comment = async (id) => {
             rows="10"
           ></textarea>
         </li>
-        <button type="submit" class="comment-btn">Comment</button>
+        <button type="submit" class="comment-btn" id="comment-button">Comment</button>
       </form>
     </div>
   </div>
    `;
 
   const form = document.querySelector('.comment-form');
-  form.addEventListener('submit', (event)=>{
+  form.addEventListener('submit', (event) => {
     event.preventDefault();
-    const commentAPI = new CommentAPI(); 
+    const commentAPI = new CommentAPI();
     const name = document.getElementById('name').value;
     const comment = document.getElementById('comment').value;
-    commentAPI.addComment(id, name, comment);  
-  })
-   const closeButton = document.querySelector('.close');
-   closeButton.addEventListener('click', ()=>{
-     commentPopup.remove(); 
-   })
+    commentAPI.addComment(id, name, comment);
+  });
+  const closeButton = document.querySelector('.close');
+  closeButton.addEventListener('click', () => {
+    commentPopup.remove();
+  });
 };
 
 export default comment;

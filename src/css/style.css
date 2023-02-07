@@ -27,6 +27,10 @@ li {
   font-weight: 700;
 }
 
+form li {
+  margin-bottom: 10px;
+}
+
 li:first-child {
   text-decoration: underline;
 }
@@ -213,7 +217,6 @@ footer {
   flex-direction: column;
 }
 
-
 .form-container h3 {
   align-self: flex-end;
 }
@@ -237,11 +240,7 @@ form input {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
 }
 
-form li {
-  margin-bottom: 10px;
-}
-
-.comment-btn {
+#comment-button {
   cursor: pointer;
   border: none;
   background-color: green;

@@ -32,13 +32,12 @@ const displaySeries = async () => {
     listItems.innerHTML = items;
   });
   const commentBtn = document.querySelectorAll('.comment-btn');
-  commentBtn.forEach(btn =>{
-      btn.addEventListener('click', ()=>{
-         const id = Number(btn.getAttribute('data-id'));
-         console.log(id);
-         comment(id);
-      })
-  })
+  commentBtn.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = Number(btn.getAttribute('data-id'));
+      comment(id);
+    });
+  });
 };
 
 displaySeries();

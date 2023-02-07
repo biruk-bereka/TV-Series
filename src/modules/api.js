@@ -6,8 +6,8 @@ export default class Api {
     return response;
   }
 
- static async getMovie(id) {
-    const req = await fetch(`${baseURL}/${id}`)
+  static async getMovie(id) {
+    const req = await fetch(`${baseURL}/${id}`);
     const movie = await req.json();
     return movie;
   }
