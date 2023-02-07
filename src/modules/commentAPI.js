@@ -19,10 +19,7 @@ export default class CommentAPI {
     }
 
     getComments = async (id) => {
-        const comments = await fetch(`${this.baseURL}/comments?item_id=${id}`)
-        .then(response => response.json())
-    
-        if(comments) return comments;
-        return [];
+       const comments = await fetch(`${this.baseURL}/comments?item_id=${id}`);
+       return comments;
     }
 }

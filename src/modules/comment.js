@@ -4,7 +4,6 @@ import CommentAPI from "./commentAPI.js";
 const comment = async (id) => {
   const movie = await Api.getMovie(id);
   const main = document.querySelector('main');
-  main.classList.toggle('blur');
   const commentPopup = document.createElement("section");
   document.body.appendChild(commentPopup);
   commentPopup.classList.toggle("popup");
@@ -48,7 +47,7 @@ const comment = async (id) => {
   const form = document.querySelector('.comment-form');
   form.addEventListener('submit', (event)=>{
     event.preventDefault();
-    const commentAPI = new CommentAPI();
+    const commentAPI = new CommentAPI(); 
     const name = document.getElementById('name').value;
     const comment = document.getElementById('comment').value;
     commentAPI.addComment(id, name, comment);  
@@ -56,7 +55,6 @@ const comment = async (id) => {
    const closeButton = document.querySelector('.close');
    closeButton.addEventListener('click', ()=>{
      commentPopup.remove(); 
-     main.classList.toggle('blur');
    })
 };
 
