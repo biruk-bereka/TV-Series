@@ -1,8 +1,15 @@
 import Api from './api.js';
 
 const listItems = document.querySelector('#list-items');
+const homeLink = document.querySelector('#home');
+
 const displayFilms = async () => {
+  // Get the series from the API
   const data = await Api.getFilms();
+  // Count the series
+  const filmsCount = data.length;
+  // Update the home link accordingly
+  homeLink.innerHTML = `TV Series (${filmsCount})`;
   let items = ``;
   data.forEach((film, index) => {
     items += `
@@ -15,7 +22,7 @@ const displayFilms = async () => {
           </button>
           <span class="like"> 5 likes</span>
           </div>
-          <button class="comment-btn">Comment</button>
+          <button data-id="${film.id}" class="comment-btn">Comment</button>
     </article>
     `;
     listItems.innerHTML = items;
