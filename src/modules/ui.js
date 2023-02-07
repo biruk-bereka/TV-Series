@@ -1,4 +1,5 @@
 import Api from './api.js';
+import { itemsCounter } from './functionalities.js';
 
 const listItems = document.querySelector('#list-items');
 const homeLink = document.querySelector('#home');
@@ -10,7 +11,7 @@ const displaySeries = async () => {
   const data = await Api.getSeries();
   loader.classList.remove('display');
   // Count the series
-  const seriesCount = data.length;
+  const seriesCount = itemsCounter(data);
   // Update the home link accordingly
   homeLink.innerHTML = `TV Series (${seriesCount})`;
   let items = '';

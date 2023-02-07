@@ -5,6 +5,10 @@
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Roboto Mono', Arial, Helvetica, sans-serif;
   display: flex;
@@ -12,27 +16,6 @@ body {
   justify-content: center;
   align-items: center;
   background-color: powderblue;
-}
-
-ul {
-  display: flex;
-  gap: 30px;
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  list-style: none;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-li:first-child {
-  text-decoration: underline;
-}
-
-a {
-  text-decoration: none;
 }
 
 header {
@@ -44,11 +27,11 @@ header {
 }
 
 .logo {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   text-align: center;
-  background-color: blueviolet;
+  background-color: rgba(244, 172, 38, 0.737);
   padding: 5px;
   border: 1px solid;
 }
@@ -58,19 +41,43 @@ nav {
   gap: 3rem;
 }
 
+ul {
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+li:first-child {
+  text-decoration: underline;
+}
+
+a {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  color: black;
+}
+
 /* LIST ITEM SECTION */
 img {
   width: 300px;
-  height: 350px;
+  height: 330px;
+  object-fit: fill;
 }
 
 .list-items {
   height: 80vh;
-  margin-top: 50px;
+  margin-top: 30px;
+  margin-bottom: 10px;
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto;
   gap: 30px;
-  padding: 10px;
+  padding: 20px;
   overflow-y: scroll;
 }
 
@@ -78,6 +85,9 @@ img {
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  border: 2px solid orange;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .item:hover {
@@ -97,7 +107,7 @@ img {
   width: 5rem;
   height: 5rem;
   border: 5px solid #f3f3f3;
-  border-top: 6px solid #9c41f2;
+  border-top: 6px solid orange;
   border-radius: 100%;
   margin: auto;
   display: none;
@@ -133,6 +143,7 @@ img {
   justify-content: center;
   padding: 5px;
   font-size: 14px;
+  font-weight: 700;
 }
 
 button:active {
@@ -148,6 +159,8 @@ button:active {
   background: white;
   border-radius: 10px;
   font-size: 18px;
+  color: orange;
+  font-weight: 700;
 }
 
 .like-btn {
@@ -158,6 +171,11 @@ button:active {
 
 /* FOOTER */
 footer {
+  width: 100%;
+  height: 60px;
   display: flex;
-  justify-content: flex-start;
+  padding: 10px 0 10px 50px;
+  border-top: 2px solid black;
+  font-size: 16px;
+  font-weight: 700;
 }
