@@ -17,4 +17,18 @@ export default class Api {
     });
     return response.status;
   }
+
+  static async likesCounter(itemId) {
+    const req = await fetch(`${baseURLInvolvement}/likes`);
+    const data = await req.json();
+    let nbLikes = 0;
+    for (let i = 0; i < data.length; i += 1) {
+      const serie = data[i];
+      if (serie.item_id === itemId) {
+        nbLikes = serie.likes;
+        break;
+      }
+    }
+    return nbLikes;
+  }
 }

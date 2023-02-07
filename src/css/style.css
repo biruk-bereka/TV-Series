@@ -179,3 +179,8 @@ footer {
   font-size: 16px;
   font-weight: 700;
 }
+
+/* INVOLVEMENT */
+.liked {
+  color: red;
+}
