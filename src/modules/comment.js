@@ -1,6 +1,8 @@
+import Api from "./api.js";
 import CommentAPI from "./commentAPI.js";
 
-const comment = () => {
+const comment = async (id) => {
+  const movie = await Api.getMovie(id);
   const main = document.querySelector('main');
   main.classList.toggle('blur');
   const commentPopup = document.createElement("section");
@@ -10,18 +12,15 @@ const comment = () => {
     <div class="comment-container">
     <div class="popup-header">
       <div class="header">
-        <img src="./assets/images/4600.jpg" alt="movie image" />
-        <h2>Title</h2>
+        <img src="${movie.image.original}" alt="movie image" />
+        <h2>${movie.name}</h2>
       </div>
       <button class="close">
         <span class="material-icons-two-tone"> close </span>
       </button>
     </div>
     <div class="details">
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa
-        quia atque ea nam? Quisquam tempora repellendus vitae quibusdam
-      </p>
+      ${movie.summary}
     </div>
     <div class="previous-comments">
       <h3>Comments (2)</h3>
@@ -49,9 +48,10 @@ const comment = () => {
   const form = document.querySelector('.comment-form');
   form.addEventListener('submit', (event)=>{
     event.preventDefault();
+    const commentAPI = new CommentAPI();
     const name = document.getElementById('name').value;
     const comment = document.getElementById('comment').value;
-        
+    commentAPI.addComment(id, name, comment);  
   })
    const closeButton = document.querySelector('.close');
    closeButton.addEventListener('click', ()=>{
