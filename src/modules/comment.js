@@ -2,17 +2,6 @@ import Api from './api.js';
 import CommentAPI from './commentAPI.js';
 
 const comment = async (id) => {
-  const commentAPI = new CommentAPI();
-  const comments = await commentAPI.getComments(id);
-  if(comments.error){
-    console.log("Error")
-  }
-  else {
-    console.log(comments.length);
-    comments.forEach(comment => {
-      console.log("cm1", comment);
-    })
-  }
   const movie = await Api.getMovie(id);
   const commentPopup = document.createElement('section');
   document.body.appendChild(commentPopup);
@@ -38,6 +27,7 @@ const comment = async (id) => {
     </div>
     <div class="form-container">
       <h3>Add Comment</h3>
+      <p class="status"></p>
       <form action="" class="comment-form">
         <li><input type="text" id="name" placeholder="Your name" /></li>
         <li>
@@ -55,12 +45,22 @@ const comment = async (id) => {
    `;
 
   const form = document.querySelector('.comment-form');
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const commentAPI = new CommentAPI();
     const name = document.getElementById('name').value;
     const comment = document.getElementById('comment').value;
-    commentAPI.addComment(id, name, comment);
+    const status = await commentAPI.addComment(id, name, comment);
+    document.getElementById('name').value = '';
+    document.getElementById('comment').value = '';
+
+    const statusUpdate = document.querySelector('.status');
+    statusUpdate.innerHTML = `Comment ${status} Successfully!`;
+    statusUpdate.style.display = 'block';
+    statusUpdate.style.backgroundColor = '#39d42e';
+    setTimeout(() => {
+      statusUpdate.style.display = 'none';
+    }, 3000);
   });
   const closeButton = document.querySelector('.close');
   closeButton.addEventListener('click', () => {
