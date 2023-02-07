@@ -14,6 +14,13 @@ body {
   background-color: powderblue;
 }
 
+ul {
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
 li {
   list-style: none;
   font-size: 20px;
