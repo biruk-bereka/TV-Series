@@ -14,6 +14,7 @@ const displaySeries = async () => {
   const seriesCount = itemsCounter(data);
   // Update the home link accordingly
   homeLink.innerHTML = `TV Series (${seriesCount})`;
+
   let items = '';
   data.forEach((film) => {
     items += `
@@ -32,5 +33,26 @@ const displaySeries = async () => {
     listItems.innerHTML = items;
   });
 };
+
+// Event on the list items
+listItems.addEventListener('click', async (event) => {
+  const { target } = event;
+  if (
+    target.classList.contains('material-symbols-outlined') &&
+    !target.classList.contains('liked')
+  ) {
+    const { id: itemId } = target.dataset;
+    const response = await Api.addNewLike(+itemId);
+    if (response === 201) {
+      alert('Liked'+itemId);
+      // const nbLikes = await Api.likesCounter(+itemId);
+      // // Update the likes
+      // const parent = target.parentElement;
+      // target.classList.add('liked');
+      // const likes = parent.nextElementSibling;
+      // likes.innerHTML = nbLikes === 1 ? `${nbLikes} like` : `${nbLikes} likes`;
+    }
+  }
+});
 
 displaySeries();
