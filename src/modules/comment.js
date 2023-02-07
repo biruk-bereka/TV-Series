@@ -25,7 +25,7 @@ const comment = async (id) => {
         <h2>${movie.name}</h2>
       </div>
       <button class="close">
-        <span class="material-icons-two-tone"> close </span>
+        <span class="material-symbols-outlined">close</span>
       </button>
     </div>
     <div class="details">
