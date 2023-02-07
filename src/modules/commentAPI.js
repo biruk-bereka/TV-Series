@@ -4,7 +4,7 @@ export default class CommentAPI {
   }
 
     addComment = async (id, name, comment) => {
-      await fetch(`${this.baseURL}/comments`, {
+      const response = await fetch(`${this.baseURL}/comments`, {
         method: 'POST',
         body: JSON.stringify({
           item_id: id,
@@ -15,11 +15,13 @@ export default class CommentAPI {
           'Content-type': 'application/json; charset=UTF-8',
         },
       })
-        .then((response) => response.json());
+      const status = await response.text();
+      return status;
     }
 
     getComments = async (id) => {
-      const comments = await fetch(`${this.baseURL}/comments?item_id=${id}`);
+      const response = await fetch(`${this.baseURL}/comments?item_id=${id}`);
+      const comments = await response.json();
       return comments;
     }
 }

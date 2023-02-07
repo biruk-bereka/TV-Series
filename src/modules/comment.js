@@ -2,6 +2,17 @@ import Api from './api.js';
 import CommentAPI from './commentAPI.js';
 
 const comment = async (id) => {
+  const commentAPI = new CommentAPI();
+  const comments = await commentAPI.getComments(id);
+  if(comments.error){
+    console.log("Error")
+  }
+  else {
+    console.log(comments.length);
+    comments.forEach(comment => {
+      console.log("cm1", comment);
+    })
+  }
   const movie = await Api.getMovie(id);
   const commentPopup = document.createElement('section');
   document.body.appendChild(commentPopup);
