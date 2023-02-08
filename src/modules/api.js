@@ -1,8 +1,8 @@
-const baseURL = 'https://api.tvmaze.com/shows?page=1';
 const baseURLInvolvement = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/ER2rFBidmmnXOpDOOVHm';
+const baseURL = 'https://api.tvmaze.com/shows';
 export default class Api {
   static async getSeries() {
-    const req = await fetch(baseURL);
+    const req = await fetch(`${baseURL}?page=1`);
     const response = await req.json();
     return response;
   }
@@ -30,5 +30,33 @@ export default class Api {
       }
     }
     return nbLikes;
+  }
+
+  static async getMovie(id) {
+    const req = await fetch(`${baseURL}/${id}`);
+    const movie = await req.json();
+    return movie;
+  }
+
+  static addComment = async (id, name, comment) => {
+    const response = await fetch(`${baseURLInvolvement}/comments`, {
+      method: 'POST',
+      body: JSON.stringify({
+        item_id: id,
+        username: name,
+        comment,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    const status = await response.text();
+    return status;
+  }
+
+  static getComments = async (id) => {
+    const response = await fetch(`${baseURLInvolvement}/comments?item_id=${id}`);
+    const comments = await response.json();
+    return comments;
   }
 }
