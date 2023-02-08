@@ -2,8 +2,6 @@ import Api from './api.js';
 
 const comment = async (id) => {
   const movie = await Api.getMovie(id);
-  const movieComments = await Api.getComments(id);
-  const commentCounter = movieComments.length > 0 ? movieComments.length : 0;
   const commentPopup = document.createElement('section');
   const main = document.querySelector('main');
   main.classList.toggle('blur');
@@ -25,7 +23,7 @@ const comment = async (id) => {
     </div>
     <div class="comment-section">
         <div class="previous-comments">
-          <h3>Comments <span class="counter">(${commentCounter})</span></h3>
+          <h3>Comments <span class="counter">(0)</span></h3>
           <div class="comments"></div>
         </div>  
         <div class="form-container">
@@ -54,8 +52,7 @@ const comment = async (id) => {
   const displayComments = async (id) => {
     const comments = await Api.getComments(id);
     const commentsContainer = document.querySelector('.comments');
-
-    const counter = comments.length > 0 ? comments.length : 0;
+    const counter = commentCounter(comments);
     const counterElement = document.querySelector('.counter');
     counterElement.innerHTML = `(${counter})`;
 
@@ -99,5 +96,9 @@ const comment = async (id) => {
     main.classList.toggle('blur');
   });
 };
+
+export const commentCounter = (comments) => {
+  return comments.length > 0 ? comments.length : 0;
+} 
 
 export default comment;
