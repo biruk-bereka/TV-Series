@@ -52,9 +52,9 @@ const comment = async (id) => {
    `;
 
   const displayComments = async (id) => {
-    let comments = await Api.getComments(id);
+    const comments = await Api.getComments(id);
     const commentsContainer = document.querySelector('.comments');
-    
+
     const counter = comments.length > 0 ? comments.length : 0;
     const counterElement = document.querySelector('.counter');
     counterElement.innerHTML = `(${counter})`;
@@ -69,7 +69,7 @@ const comment = async (id) => {
     } else {
       commentsContainer.innerHTML = 'No comments.';
     }
-  }
+  };
 
   displayComments(id);
 
@@ -89,7 +89,7 @@ const comment = async (id) => {
     setTimeout(() => {
       statusUpdate.style.display = 'none';
     }, 3000);
-    if(status === "Created") {
+    if (status === 'Created') {
       displayComments(id);
     }
   });
