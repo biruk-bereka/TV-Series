@@ -302,3 +302,7 @@ form textarea {
 .movie-title {
   font-size: 30px;
 }
+
+.status {
+  margin-bottom: 5px;
+}
