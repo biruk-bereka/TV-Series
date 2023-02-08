@@ -2,6 +2,8 @@ import Api from './api.js';
 
 const comment = async (id) => {
   const movie = await Api.getMovie(id);
+  const movieComments = await Api.getComments(id);
+  const commentCounter = movieComments.length > 0 ? movieComments.length : 0;
   const commentPopup = document.createElement('section');
   const main = document.querySelector('main');
   main.classList.toggle('blur');
@@ -24,8 +26,7 @@ const comment = async (id) => {
     <div class="comment-section">
         <div class="previous-comments">
           <h3>Comments (2)</h3>
-          <p>03/11/2021 Alex: I'd love to buy it</p>
-          <p>03/12/2021 Mia: I love</p>
+          <div class="comments"></div>
         </div>  
         <div class="form-container">
         <h3>Add Comment</h3>
@@ -49,6 +50,17 @@ const comment = async (id) => {
     
   </div>
    `;
+   
+   const commentsContainer = document.querySelector('.comments');
+  if (commentCounter > 0) {
+    movieComments.forEach((comment) => {
+      const commentElement = document.createElement('p');
+      commentElement.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
+      commentsContainer.appendChild(commentElement);
+    });
+  } else {
+    commentsContainer.innerHTML = 'No comments.';
+  }
 
   const form = document.querySelector('.comment-form');
   form.addEventListener('submit', async (event) => {
