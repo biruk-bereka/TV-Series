@@ -193,6 +193,13 @@ footer {
   color: #eee;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.popup::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 .blur {
   filter: blur(8px);
 }

@@ -45,8 +45,7 @@ const displaySeries = async () => {
 listItems.addEventListener('click', async (event) => {
   const { target } = event;
   if (
-    target.classList.contains('material-symbols-outlined') &&
-    !target.classList.contains('liked')
+    target.classList.contains('material-symbols-outlined') && !target.classList.contains('liked')
   ) {
     target.classList.add('liked');
     const { id: itemId } = target.dataset;
