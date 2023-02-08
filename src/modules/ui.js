@@ -19,7 +19,7 @@ const displaySeries = async () => {
   // Count the series
   const seriesCount = itemsCounter(series);
   // Update the home link accordingly
-  homeLink.innerHTML = `TV Series (${seriesCount})`;
+  homeLink.innerHTML = `TV Series(${seriesCount})`;
 
   let items = '';
   series.forEach(async (film) => {

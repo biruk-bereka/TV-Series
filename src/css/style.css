@@ -35,13 +35,20 @@ form li {
   margin-bottom: 10px;
 }
 
-li:first-child {
-  text-decoration: underline;
-}
-
 a {
   text-decoration: none;
   color: black;
+}
+
+a:hover {
+  color: orange;
+}
+
+.active {
+  background: white;
+  padding: 5px;
+  border-radius: 25px;
+  color: rgb(222, 153, 23);
 }
 
 header {
@@ -170,6 +177,10 @@ footer {
   border-top: 2px solid black;
   font-size: 16px;
   font-weight: 700;
+}
+
+.github {
+  color: rgba(215, 149, 25, 0.877);
 }
 
 /* INVOLVEMENT */
