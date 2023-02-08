@@ -1,4 +1,5 @@
 import Api from './api.js';
+import comment from './comment.js';
 
 const listItems = document.querySelector('#list-items');
 const homeLink = document.querySelector('#home');
@@ -29,6 +30,13 @@ const displaySeries = async () => {
     </article>
     `;
     listItems.innerHTML = items;
+  });
+  const commentBtn = document.querySelectorAll('.comment-btn');
+  commentBtn.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = Number(btn.getAttribute('data-id'));
+      comment(id);
+    });
   });
 };
 
