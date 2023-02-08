@@ -1,9 +1,12 @@
 import Api from './api.js';
 import { itemsCounter, likesCounter } from './functionalities.js';
 import comment from './comment.js';
+import logo from '../assets/logo.png';
 
 const listItems = document.querySelector('#list-items');
 const homeLink = document.querySelector('#home');
+const logoImg = document.querySelector('#logo');
+logoImg.src = logo;
 
 const displaySeries = async () => {
   const loader = document.querySelector('#loader');
@@ -42,7 +45,8 @@ const displaySeries = async () => {
 listItems.addEventListener('click', async (event) => {
   const { target } = event;
   if (
-    target.classList.contains('material-symbols-outlined') && !target.classList.contains('liked')
+    target.classList.contains('material-symbols-outlined') &&
+    !target.classList.contains('liked')
   ) {
     target.classList.add('liked');
     const { id: itemId } = target.dataset;
