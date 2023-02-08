@@ -1,5 +1,4 @@
 import Api from './api.js';
-import CommentAPI from './commentAPI.js';
 
 const comment = async (id) => {
   const movie = await Api.getMovie(id);
@@ -54,10 +53,9 @@ const comment = async (id) => {
   const form = document.querySelector('.comment-form');
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const commentAPI = new CommentAPI();
     const name = document.getElementById('name').value;
     const comment = document.getElementById('comment').value;
-    const status = await commentAPI.addComment(id, name, comment);
+    const status = await Api.addComment(id, name, comment);
     document.getElementById('name').value = '';
     document.getElementById('comment').value = '';
 
