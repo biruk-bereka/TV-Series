@@ -25,7 +25,7 @@ const comment = async (id) => {
     </div>
     <div class="comment-section">
         <div class="previous-comments">
-          <h3>Comments (2)</h3>
+          <h3>Comments (${commentCounter})</h3>
           <div class="comments"></div>
         </div>  
         <div class="form-container">
@@ -50,7 +50,7 @@ const comment = async (id) => {
     
   </div>
    `;
-   
+
    const commentsContainer = document.querySelector('.comments');
   if (commentCounter > 0) {
     movieComments.forEach((comment) => {
