@@ -30,8 +30,9 @@ const comment = async (id) => {
         </div>  
         <div class="form-container">
         <h3>Add Comment</h3>
+        <p class="status"></p>
         <form action="" class="comment-form">
-          <li><input type="text" id="name" placeholder="Your name" /></li>
+          <li><input type="text" id="name" placeholder="Your name" required/></li>
           <li>
             <textarea
               name="comment"
@@ -39,6 +40,7 @@ const comment = async (id) => {
               cols="30"
               rows="10"
               placeholder="Give us your comments..."
+              required
             ></textarea>
           </li>
           <button type="submit" class="comment-btn" id="comment-button">Comment</button>
@@ -50,12 +52,22 @@ const comment = async (id) => {
    `;
 
   const form = document.querySelector('.comment-form');
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const commentAPI = new CommentAPI();
     const name = document.getElementById('name').value;
     const comment = document.getElementById('comment').value;
-    commentAPI.addComment(id, name, comment);
+    const status = await commentAPI.addComment(id, name, comment);
+    document.getElementById('name').value = '';
+    document.getElementById('comment').value = '';
+
+    const statusUpdate = document.querySelector('.status');
+    statusUpdate.innerHTML = `Comment ${status} Successfully!`;
+    statusUpdate.style.display = 'block';
+    statusUpdate.style.backgroundColor = '#39d42e';
+    setTimeout(() => {
+      statusUpdate.style.display = 'none';
+    }, 3000);
   });
   const closeButton = document.querySelector('.close');
   closeButton.addEventListener('click', () => {
