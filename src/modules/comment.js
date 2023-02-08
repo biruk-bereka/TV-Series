@@ -1,5 +1,7 @@
 import Api from './api.js';
 
+export const commentCounter = (comments) => (comments.length > 0 ? comments.length : 0);
+
 const comment = async (id) => {
   const movie = await Api.getMovie(id);
   const commentPopup = document.createElement('section');
@@ -96,9 +98,5 @@ const comment = async (id) => {
     main.classList.toggle('blur');
   });
 };
-
-export const commentCounter = (comments) => {
-  return comments.length > 0 ? comments.length : 0;
-} 
 
 export default comment;
