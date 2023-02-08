@@ -293,6 +293,8 @@ form textarea {
 .close {
   cursor: pointer;
   border: none;
+  align-self: flex-end;
+  margin-bottom: 20px;
 }
 
 .close:hover {

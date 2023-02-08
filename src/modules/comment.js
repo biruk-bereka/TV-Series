@@ -10,14 +10,14 @@ const comment = async (id) => {
   commentPopup.classList.toggle('popup');
   commentPopup.innerHTML = `
     <div class="comment-container">
+    <button class="close">
+    <span class="material-symbols-outlined">close</span>
+    </button>
     <div class="popup-header">
       <div class="header">
         <img id="movie-image" src="${movie.image.original}" alt="movie image" />
         <h2 class="title movie-title">${movie.name}</h2>
       </div>
-      <button class="close">
-      <span class="material-symbols-outlined">close</span>
-      </button>
     </div>
     <div class="details">
       ${movie.summary}
