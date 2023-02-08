@@ -2,55 +2,50 @@ import Api from './api.js';
 import CommentAPI from './commentAPI.js';
 
 const comment = async (id) => {
-  const commentAPI = new CommentAPI();
-  const comments = await commentAPI.getComments(id);
-  if(comments.error){
-    console.log("Error")
-  }
-  else {
-    console.log(comments.length);
-    comments.forEach(comment => {
-      console.log("cm1", comment);
-    })
-  }
   const movie = await Api.getMovie(id);
   const commentPopup = document.createElement('section');
+  const main = document.querySelector('main');
+  main.classList.toggle('blur');
   document.body.appendChild(commentPopup);
   commentPopup.classList.toggle('popup');
   commentPopup.innerHTML = `
     <div class="comment-container">
     <div class="popup-header">
       <div class="header">
-        <img src="${movie.image.original}" alt="movie image" />
-        <h2>${movie.name}</h2>
+        <img id="movie-image" src="${movie.image.original}" alt="movie image" />
+        <h2 class="title movie-title">${movie.name}</h2>
       </div>
       <button class="close">
-        <span class="material-symbols-outlined">close</span>
+      <span class="material-symbols-outlined">close</span>
       </button>
     </div>
     <div class="details">
       ${movie.summary}
     </div>
-    <div class="previous-comments">
-      <h3>Comments (2)</h3>
-      <p>03/11/2021 Alex: I'd love to buy it</p>
-      <p>03/12/2021 Mia: I love</p>
+    <div class="comment-section">
+        <div class="previous-comments">
+          <h3>Comments (2)</h3>
+          <p>03/11/2021 Alex: I'd love to buy it</p>
+          <p>03/12/2021 Mia: I love</p>
+        </div>  
+        <div class="form-container">
+        <h3>Add Comment</h3>
+        <form action="" class="comment-form">
+          <li><input type="text" id="name" placeholder="Your name" /></li>
+          <li>
+            <textarea
+              name="comment"
+              id="comment"
+              cols="30"
+              rows="10"
+              placeholder="Give us your comments..."
+            ></textarea>
+          </li>
+          <button type="submit" class="comment-btn" id="comment-button">Comment</button>
+        </form>
+      </div>
     </div>
-    <div class="form-container">
-      <h3>Add Comment</h3>
-      <form action="" class="comment-form">
-        <li><input type="text" id="name" placeholder="Your name" /></li>
-        <li>
-          <textarea
-            name="comment"
-            id="comment"
-            cols="30"
-            rows="10"
-          ></textarea>
-        </li>
-        <button type="submit" class="comment-btn" id="comment-button">Comment</button>
-      </form>
-    </div>
+    
   </div>
    `;
 
@@ -65,6 +60,7 @@ const comment = async (id) => {
   const closeButton = document.querySelector('.close');
   closeButton.addEventListener('click', () => {
     commentPopup.remove();
+    main.classList.toggle('blur');
   });
 };
 
