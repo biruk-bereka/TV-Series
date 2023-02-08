@@ -1,5 +1,12 @@
 <a name="readme-top"></a>
 
+## Screenshots
+### HOMEPAGE
+![App Screenshot](./src/assets/homepage.png)
+
+### POPUP DETAILS
+![App Screenshot](./src/assets/popup.png)
+
 <!-- TABLE OF CONTENTS -->
 
 # 📗 Table of Contents
