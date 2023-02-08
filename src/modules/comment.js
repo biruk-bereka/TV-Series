@@ -2,6 +2,8 @@ import Api from './api.js';
 
 const comment = async (id) => {
   const movie = await Api.getMovie(id);
+  const movieComments = await Api.getComments(id);
+  const commentCounter = movieComments.length > 0 ? movieComments.length : 0;
   const commentPopup = document.createElement('section');
   const main = document.querySelector('main');
   main.classList.toggle('blur');
@@ -23,9 +25,8 @@ const comment = async (id) => {
     </div>
     <div class="comment-section">
         <div class="previous-comments">
-          <h3>Comments (2)</h3>
-          <p>03/11/2021 Alex: I'd love to buy it</p>
-          <p>03/12/2021 Mia: I love</p>
+          <h3>Comments <span class="counter">(${commentCounter})</span></h3>
+          <div class="comments"></div>
         </div>  
         <div class="form-container">
         <h3>Add Comment</h3>
@@ -50,6 +51,28 @@ const comment = async (id) => {
   </div>
    `;
 
+  const displayComments = async (id) => {
+    const comments = await Api.getComments(id);
+    const commentsContainer = document.querySelector('.comments');
+
+    const counter = comments.length > 0 ? comments.length : 0;
+    const counterElement = document.querySelector('.counter');
+    counterElement.innerHTML = `(${counter})`;
+
+    commentsContainer.innerHTML = '';
+    if (counter > 0) {
+      comments.forEach((comment) => {
+        const commentElement = document.createElement('p');
+        commentElement.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
+        commentsContainer.appendChild(commentElement);
+      });
+    } else {
+      commentsContainer.innerHTML = 'No comments.';
+    }
+  };
+
+  displayComments(id);
+
   const form = document.querySelector('.comment-form');
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -66,6 +89,9 @@ const comment = async (id) => {
     setTimeout(() => {
       statusUpdate.style.display = 'none';
     }, 3000);
+    if (status === 'Created') {
+      displayComments(id);
+    }
   });
   const closeButton = document.querySelector('.close');
   closeButton.addEventListener('click', () => {
