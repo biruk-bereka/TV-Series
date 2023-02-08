@@ -10,14 +10,16 @@ const displaySeries = async () => {
   loader.classList.add('display');
   // Get the series from the API
   const data = await Api.getSeries();
+  // Display only 21
+  const series = data.slice(0, 21);
   loader.classList.remove('display');
   // Count the series
-  const seriesCount = itemsCounter(data);
+  const seriesCount = itemsCounter(series);
   // Update the home link accordingly
   homeLink.innerHTML = `TV Series (${seriesCount})`;
 
   let items = '';
-  data.forEach(async (film) => {
+  series.forEach(async (film) => {
     const nbLikes = await likesCounter(film.id);
     items += `
     <article class="item">
@@ -40,16 +42,15 @@ const displaySeries = async () => {
 listItems.addEventListener('click', async (event) => {
   const { target } = event;
   if (
-    target.classList.contains('material-symbols-outlined')
-    && !target.classList.contains('liked')
+    target.classList.contains('material-symbols-outlined') && !target.classList.contains('liked')
   ) {
+    target.classList.add('liked');
     const { id: itemId } = target.dataset;
     const response = await Api.addNewLike(+itemId);
     if (response === 201) {
       const nbLikes = await likesCounter(+itemId);
       // Update the likes
       const parent = target.parentElement;
-      target.classList.add('liked');
       const likes = parent.nextElementSibling;
       likes.innerHTML = nbLikes === 1 ? `${nbLikes} like` : `${nbLikes} likes`;
     }
