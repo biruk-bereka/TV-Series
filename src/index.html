@@ -1,32 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TV Series</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TV Series</title>
-</head>
-
-<body>
-  <main>
-    <header>
-      <div class="logo">TV Series</div>
-      <nav>
-        <ul>
-          <li><a href="#home" id="home">TV Series</a></li>
-          <li><a href="#">TV Shows</a></li>
-          <li><a href="#">Movies</a></li>
-        </ul>
-      </nav>
-    </header>
-    <!-- LIST ITEM -->
-    <div id="loader"></div>
-    <section class="list-items" id="list-items"></section>
-  </main>
-  <hr />
-  <footer>
-    <p>Created by Biruk and Kender</p>
-  </footer>
-</body>
-
+  <body>
+    <main>
+      <header>
+        <img class="logo" id="logo" src="./assets/logo-1.png" />
+        <nav>
+          <ul id="nav-items">
+            <li>
+              <a class="all active" href="#" id="home">TV Series</a>
+            </li>
+            <li><a href="#" class="drama">Drama</a></li>
+            <li><a href="#" class="romance">Romance</a></li>
+            <li><a href="#" class="comedy">Comedy</a></li>
+          </ul>
+        </nav>
+      </header>
+      <!-- LIST ITEM -->
+      <div id="loader"></div>
+      <section class="list-items" id="list-items"></section>
+    </main>
+    <hr />
+    <footer>
+      <p>
+        Created by
+        <a
+          class="github"
+          rel="noopener"
+          href="https://github.com/biruk-bereka"
+          target="_blank"
+          >Biruk</a
+        >
+        and
+        <a
+          class="github"
+          rel="noopener"
+          href="https://github.com/kensteph"
+          target="_blank"
+          >Kender</a
+        >
+      </p>
+    </footer>
+  </body>
 </html>
