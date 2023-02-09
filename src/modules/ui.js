@@ -71,10 +71,22 @@ listItems.addEventListener('click', async (event) => {
   }
 });
 
+const selectMenu = (genre) => {
+  const menuItems = document.querySelectorAll('#nav-items li a');
+  menuItems.forEach((link) => {
+    if (link.classList.contains(genre)) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+};
+
 const navItems = document.getElementById('nav-items');
 navItems.addEventListener('click', async (event) => {
   const { target } = event;
   const genreClass = target.classList[0];
+  selectMenu(genreClass);
   const genre = genreClass.charAt(0).toUpperCase() + genreClass.slice(1);
 
   if (genre === 'All') {
@@ -83,7 +95,6 @@ navItems.addEventListener('click', async (event) => {
     const data = await Api.getSeries();
     const series = data.slice(0, 21);
     const filterdSeries = series.filter((movie) => movie.genres.includes(genre));
-
     displaySeries(filterdSeries);
   }
 });
