@@ -8,13 +8,18 @@ const homeLink = document.querySelector('#home');
 const logoImg = document.querySelector('#logo');
 logoImg.src = logo;
 
-const displaySeries = async () => {
+const displaySeries = async (genreSeries = null) => {
   const loader = document.querySelector('#loader');
   loader.classList.add('display');
   // Get the series from the API
   const data = await Api.getSeries();
   // Display only 21
-  const series = data.slice(0, 21);
+  let series;
+  if (genreSeries === null) {
+    series = data.slice(0, 21);
+  } else {
+    series = genreSeries;
+  }
   loader.classList.remove('display');
   // Count the series
   const seriesCount = itemsCounter(series);
@@ -45,7 +50,8 @@ const displaySeries = async () => {
 listItems.addEventListener('click', async (event) => {
   const { target } = event;
   if (
-    target.classList.contains('material-symbols-outlined') && !target.classList.contains('liked')
+    target.classList.contains('material-symbols-outlined')
+    && !target.classList.contains('liked')
   ) {
     target.classList.add('liked');
     const { id: itemId } = target.dataset;
@@ -62,6 +68,23 @@ listItems.addEventListener('click', async (event) => {
   if (target.classList.contains('comment-btn')) {
     const { id: itemId } = target.dataset;
     comment(itemId);
+  }
+});
+
+const navItems = document.getElementById('nav-items');
+navItems.addEventListener('click', async (event) => {
+  const { target } = event;
+  const genreClass = target.classList[0];
+  const genre = genreClass.charAt(0).toUpperCase() + genreClass.slice(1);
+
+  if (genre === 'All') {
+    displaySeries();
+  } else {
+    const data = await Api.getSeries();
+    const series = data.slice(0, 21);
+    const filterdSeries = series.filter((movie) => movie.genres.includes(genre));
+
+    displaySeries(filterdSeries);
   }
 });
 
