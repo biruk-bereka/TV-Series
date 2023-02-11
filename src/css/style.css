@@ -68,10 +68,9 @@ header {
 /* LIST ITEM SECTION */
 .list-items {
   height: 75vh;
-  width: 75vw;
   margin-top: 15px;
   display: grid;
-  grid-template-columns: 300px 300px 300px 300px;
+  grid-template-columns: auto auto auto auto;
   gap: 15px;
   padding: 20px;
   overflow-y: scroll;
