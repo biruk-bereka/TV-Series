@@ -76,7 +76,7 @@ img {
   height: 75vh;
   margin-top: 25px;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto;
   gap: 15px;
   padding: 20px;
   overflow-y: scroll;
