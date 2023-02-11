@@ -66,32 +66,15 @@ header {
 }
 
 /* LIST ITEM SECTION */
-img {
-  width: 300px;
-  height: 310px;
-  object-fit: fill;
-}
-
 .list-items {
   height: 75vh;
-  margin-top: 25px;
+  width: 75vw;
+  margin-top: 15px;
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 300px 300px 300px 300px;
   gap: 15px;
   padding: 20px;
   overflow-y: scroll;
-}
-
-.item {
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.item:hover {
-  transform: scale(1.05);
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -129,21 +112,40 @@ img {
   }
 }
 
+.item {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.item:hover {
+  transform: scale(1.05);
+}
+
+img {
+  width: 300px;
+  height: 300px;
+  object-fit: fill;
+}
+
 .film {
-  width: 200px;
   font-size: 18px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.title {
+.title-box {
+  width: 300px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 5px;
   font-size: 14px;
   font-weight: 700;
+  background-color: #f3f3f8f2;
+  margin-bottom: 5px;
 }
 
 button:active {
@@ -163,9 +165,13 @@ button:active {
 }
 
 .like-btn {
+  display: flex;
+  align-items: center;
   border: none;
   background: transparent;
   cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 /* FOOTER */
@@ -244,6 +250,15 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .previous-comments {
