@@ -1,6 +1,6 @@
 import Api from './api.js';
 import { itemsCounter, likesCounter } from './functionalities.js';
-import comment from './comment.js';
+import comment, { commentCounter } from './comment.js';
 import logo from '../assets/logo.png';
 
 const listItems = document.querySelector('#list-items');
@@ -29,6 +29,8 @@ const displaySeries = async (genreSeries = null) => {
   let items = '';
   series.forEach(async (film) => {
     const nbLikes = await likesCounter(film.id);
+    const comments = await Api.getComments(film.id);
+    const nbComments = commentCounter(comments);
     items += `
     <article class="item">
         <img src="${film.image.original}" alt="">
@@ -39,7 +41,7 @@ const displaySeries = async (genreSeries = null) => {
             </button>
             <span class="like"> ${nbLikes} likes</span>
           </div>
-          <button data-id="${film.id}" class="comment-btn" type="button">Comment</button>
+          <button data-id="${film.id}" class="comment-btn" type="button">Comment ${nbComments > 0 ? `(${nbComments})` : ''}</button>
     </article>
     `;
     listItems.innerHTML = items;
